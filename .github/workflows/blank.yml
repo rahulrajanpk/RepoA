@@ -1,0 +1,40 @@
+name: Sync from repoA
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Runs every day at midnight
+  workflow_dispatch:      # Allows manual triggering of the workflow
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repoB
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Add remote repoA
+        run: |
+          git remote add repoA https://github.com/ashwini-m1488/RepoA.git
+          git fetch repoA
+
+      - name: Pull changes from repoA
+        run: |
+          git config merge.ours.driver true
+          git pull repoA main --strategy-option=ours || true
+        env:
+          GIT_COMMITTER_NAME: GitHub Action
+          GIT_COMMITTER_EMAIL: action@github.com
+
+      - name: Commit changes (if any)
+        run: |
+          git add .
+          git commit -m "Merge changes from repoA" || echo "No changes to commit"
+          
+      - name: Push changes to repoB
+        run: |
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
