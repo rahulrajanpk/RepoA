@@ -17,18 +17,8 @@ jobs:
 
       - name: Add remote repoA
         run: |
-          git remote add repoA https://github.com/ashwini-m1488/RepoA.git
-          git fetch repoA
-
-      - name: Configure Git user
-        run: |
-          git config user.name "rahulrajanpk"
-          git config user.email "rahulrajanpk@gmail.com"
-
-      - name: Pull changes from repoA
-        run: |
-          git config merge.ours.driver true
-          git pull repoA main --strategy-option=theirs || true
+          git remote add upstream https://github.com/ashwini-m1488/RepoA.git
+          git pull upstream main
 
       - name: Commit changes (if any)
         run: |
