@@ -17,7 +17,7 @@ jobs:
 
       - name: Add remote repoA
         run: |
-          git remote add upstream https://github.com/ashwini-m1488/RepoA.git
+          git remote set-url upstream https://github.com/ashwini-m1488/RepoA.git
           git pull upstream main
 
       - name: Commit changes (if any)
