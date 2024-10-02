@@ -21,7 +21,7 @@ jobs:
       - name: Add remote repoA
         run: |
           echo "Adding remote upstream..."
-          git remote add upstream https://github.com/ashwini-m1488/RepoB.git || echo "Remote already exists"
+          git remote add upstream https://github.com/rahulrajanpk/RepoA.git || echo "Remote already exists"
           git remote -v  # Verify the remote has been added
 
       - name: Pull changes from upstream
