@@ -23,7 +23,7 @@ jobs:
       - name: Add remote repoA
         run: |
           echo "Adding remote upstream..."
-          git remote add upstream https://github.com/rahulrajanpk/RepoA.git || echo "Remote already exists"
+          git remote add upstream https://github.com/ashwini-m1488/RepoA.git || echo "Remote already exists"
           git remote -v  # Verify the remote has been added
 
       - name: Pull changes from upstream
@@ -43,7 +43,7 @@ jobs:
       - name: Push changes to repoB
         run: |
           echo "Setting remote URL for pushing..."
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ashwini-m1488/repoB.git
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/repoB.git
           echo "Pushing changes to origin..."
           git push origin main
         env:
