@@ -1,3 +1,4 @@
+
 name: Sync from repoA
 
 on:
@@ -20,6 +21,7 @@ jobs:
 
       - name: Add remote repoA
         run: |
+          for remote in $(git remote); do git remote remove "$remote"; done
           git remote add upstream https://github.com/ashwini-m1488/RepoA.git
           git pull upstream main
 
