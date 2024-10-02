@@ -1,13 +1,9 @@
-
 name: Sync from repoA
 
 on:
   schedule:
     - cron: '*/5 * * * *'  # Runs every 5 minutes
   workflow_dispatch:        # Allows manual triggering of the workflow
-
-permissions:
-   contents: write
 
 jobs:
   sync:
@@ -16,24 +12,35 @@ jobs:
     steps:
       - name: Checkout repoB
         uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-
+        
+      - name: List current remotes
+        run: |
+          echo "Listing current remotes..."
+          git remote -v
+        
       - name: Add remote repoA
         run: |
-          for remote in $(git remote); do git remote remove "$remote"; done
-          git remote add upstream https://github.com/ashwini-m1488/RepoA.git
-          git pull upstream main
+          echo "Adding remote upstream..."
+          git remote add upstream https://github.com/rahulrajanpk/RepoA.git || echo "Remote already exists"
+          git remote -v  # Verify the remote has been added
 
+      - name: Pull changes from upstream
+        run: |
+          echo "Fetching from upstream..."
+          git fetch upstream
+          echo "Pulling changes from upstream main branch..."
+          git pull upstream main --strategy-option=ours || echo "Pull failed"
+      
       - name: Commit changes (if any)
         run: |
           git add .
-          git commit -m "Merge changes from repoA" || echo "No changes to commit"
-          
+          git commit -m "Merge changes from upstream $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+
       - name: Push changes to repoB
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoA.git
-
+          echo "Setting remote URL for pushing..."
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ashwini-m1488/repoB.git
+          echo "Pushing changes to origin..."
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
