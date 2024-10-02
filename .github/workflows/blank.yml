@@ -43,7 +43,7 @@ jobs:
       - name: Push changes to repoB
         run: |
           echo "Setting remote URL for pushing..."
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoB.git
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoA.git
           echo "Pushing changes to origin..."
           git push origin main
         env:
