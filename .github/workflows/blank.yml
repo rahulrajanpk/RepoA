@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '*/5 * * * *'  # Runs every 5 minutes
   workflow_dispatch:        # Allows manual triggering of the workflow
+permissions:
+  contents: write
 
 jobs:
   sync:
@@ -35,6 +37,8 @@ jobs:
         run: |
           git add .
           git commit -m "Merge changes from upstream $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+      - name: List remotes
+        run: git remote -v
 
       - name: Push changes to repoB
         run: |
