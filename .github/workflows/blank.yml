@@ -23,7 +23,11 @@ jobs:
         run: |
           echo "Listing current remotes..."
           git remote -v
-        
+      - name: Clone the project
+        run: |
+          echo "Adding remote upstream..."
+          git clone https://github.com/rahulrajanpk/RepoA.git
+
       - name: Add remote repoA of Ash
         run: |
           echo "Adding remote upstream..."
@@ -34,8 +38,8 @@ jobs:
         run: |
           ls -la
           echo "Pulling changes from upstream main branch..."
-          git fetch upstream   # Fetch changes from upstream (or origin if pulling from a remote)
-          git merge -X ours upstream/main --allow-unrelated-histories  # Automatically resolve conflicts by keeping upstream/main's changes
+          git pull upstream main  # Fetch changes from upstream (or origin if pulling from a remote)
+         # git merge -X ours upstream/main --allow-unrelated-histories   Automatically resolve conflicts by keeping upstream/main's changes
       - name: Status (if any)
         run: |
           git status
