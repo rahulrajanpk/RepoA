@@ -36,7 +36,7 @@ jobs:
 
       - name: Pull changes from upstream
         run: |
-          git pull upstream main --allow-unrelated-histories  # Automatically resolve conflicts by keeping upstream/main's changes
+          git pull upstream main git pull --strategy-option=ours --allow-unrelated-histories  # Automatically resolve conflicts by keeping upstream/main's changes
       - name: Status (if any)
         run: |
           git status
