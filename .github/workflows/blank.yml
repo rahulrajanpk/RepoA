@@ -19,33 +19,21 @@ jobs:
           git config --global user.name "rahulrajanpk"
           git config --global user.email "rahulrajanpk@gmail.com"
         
-      - name: List current remotes
-        run: |
-          echo "Listing current remotes..."
-          git remote -v
-      - name: Clone the project
-        run: |
-          echo "Adding remote upstream..."
-          git clone https://github.com/rahulrajanpk/RepoA.git
-          ls -la
 
       - name: Add remote repoA of Ash
         run: |
           echo "Adding remote upstream..."
           git remote add upstream https://github.com/ashwini-m1488/RepoA.git || echo "Remote already exists"
-          
-      - name: View all remote
-        run: |
-          git remote -v  # Verify the remote has been added
 
       - name: Fetch from upstream
         run: |
-          git fetch upstream main 
+          git pull upstream main 
           ls -la
           
       - name: merge from upstream
         run: |
-          git merge upstream/main --allow-unrelated-histories --strategy=ours  # Automatically resolve conflicts by keeping upstream/main's changes
+          git checkout HEAD -- File1.txt File2.txt
+          git merge upstream/main --allow-unrelated-histories
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoA.git
           echo "Pushing changes to origin..."
           git push origin main
