@@ -28,8 +28,7 @@ jobs:
 
       - name: Pull changes from upstream
         run: |
-          echo "Fetching from upstream..."
-          git fetch upstream
+          
           echo "Pulling changes from upstream main branch..."
           git pull upstream main --strategy-option=ours || echo "Pull failed"
       
