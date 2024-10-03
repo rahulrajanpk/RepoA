@@ -38,7 +38,7 @@ jobs:
           git merge -X ours upstream/main --allow-unrelated-histories  # Automatically resolve conflicts by keeping upstream/main's changes
       - name: Status (if any)
         run: |
-          git statuc
+          git status
       
       - name: Commit changes (if any)
         run: |
