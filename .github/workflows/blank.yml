@@ -27,6 +27,7 @@ jobs:
         run: |
           echo "Adding remote upstream..."
           git clone https://github.com/rahulrajanpk/RepoA.git
+          ls -l
 
       - name: Add remote repoA of Ash
         run: |
