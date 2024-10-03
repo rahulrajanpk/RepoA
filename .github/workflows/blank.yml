@@ -27,7 +27,7 @@ jobs:
 
       - name: Fetch from upstream
         run: |
-          git pull upstream main 
+          git fetch upstream main 
           ls -la
           
       - name: merge from upstream
