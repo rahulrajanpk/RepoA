@@ -20,7 +20,7 @@ jobs:
           echo "Listing current remotes..."
           git remote -v
         
-      - name: Add remote repoA
+      - name: Add remote repoA of Ash
         run: |
           echo "Adding remote upstream..."
           git remote add upstream https://github.com/ashwini-m1488/RepoA.git || echo "Remote already exists"
@@ -40,7 +40,7 @@ jobs:
       - name: List remotes
         run: git remote -v
 
-      - name: Push changes to repoB
+      - name: Push changes to repoA for rahul
         run: |
           echo "Setting remote URL for pushing..."
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoA.git
