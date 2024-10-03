@@ -35,7 +35,7 @@ jobs:
           git checkout HEAD -- File1.txt File2.txt
       - name: Merging
         run: |
-          git merge upstream/main --allow-unrelated-histories --strategy=thiers
+          git merge upstream/main --allow-unrelated-histories --strategy=theirs
       - name: Push
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoA.git
