@@ -37,6 +37,7 @@ jobs:
       - name: Pull changes from upstream
         run: |
           git fetch upstream main 
+          git status
           git merge upstream/main --allow-unrelated-histories --strategy=ours  # Automatically resolve conflicts by keeping upstream/main's changes
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoA.git
           echo "Pushing changes to origin..."
