@@ -30,7 +30,9 @@ jobs:
         run: |
           
           echo "Pulling changes from upstream main branch..."
-          git pull upstream main --strategy-option=ours || echo "Pull failed"
+          git fetch upstream   # Fetch changes from upstream (or origin if pulling from a remote)
+          git merge -X ours upstream/main  # Automatically resolve conflicts by keeping upstream/main's changes
+
       
       - name: Commit changes (if any)
         run: |
