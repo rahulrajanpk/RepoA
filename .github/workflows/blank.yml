@@ -18,8 +18,9 @@ jobs:
         run: |
           git config --global user.name "rahulrajanpk"
           git config --global user.email "rahulrajanpk@gmail.com"
-        
-
+      - name: Clone
+        run: |        
+          git clone https://github.com/rahulrajanpk/RepoA.git
       - name: Add remote repoA of Ash
         run: |
           echo "Adding remote upstream..."
