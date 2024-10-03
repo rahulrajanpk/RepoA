@@ -38,20 +38,6 @@ jobs:
         run: |
           git fetch upstream main 
           git merge upstream/main --allow-unrelated-histories --strategy=ours  # Automatically resolve conflicts by keeping upstream/main's changes
-      - name: Status (if any)
-        run: |
-          git status
-      
-      - name: Commit changes (if any)
-        run: |
-          git add .
-          git commit -m "Merge changes from upstream $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
-      - name: List remotes
-        run: git remote -v
-
-      - name: Push changes to repoA for rahul
-        run: |
-          echo "Setting remote URL for pushing..."
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rahulrajanpk/RepoA.git
           echo "Pushing changes to origin..."
           git push origin main
