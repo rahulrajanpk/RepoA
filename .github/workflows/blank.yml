@@ -36,7 +36,9 @@ jobs:
           echo "Pulling changes from upstream main branch..."
           git fetch upstream   # Fetch changes from upstream (or origin if pulling from a remote)
           git merge -X ours upstream/main --allow-unrelated-histories  # Automatically resolve conflicts by keeping upstream/main's changes
-
+      - name: Status (if any)
+        run: |
+          git statuc
       
       - name: Commit changes (if any)
         run: |
